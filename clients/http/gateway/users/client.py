@@ -35,4 +35,4 @@ class UsersGatewayHTTPClient(HTTPClient):
         :param request: Словарь с данными нового пользователя.
         :return: Ответ от сервера (объект httpx.Response).
         """
-        return self.post("/api/v1/users/", json=request)
+        return self.post("/api/v1/users", json=request)
