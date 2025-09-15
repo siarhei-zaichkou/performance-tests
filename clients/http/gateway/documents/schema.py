@@ -1,14 +1,14 @@
-from pydantic import BaseModel, Field, ConfigDict, HttpUrl
+from pydantic import BaseModel, HttpUrl
 
 
-class DocumentDict(BaseModel):
+class DocumentSchema(BaseModel):
     url: HttpUrl
     document: str
 
 
-class GetTariffDocumentResponseDict(BaseModel):
-    tariff: DocumentDict
+class GetTariffDocumentResponseSchema(BaseModel):
+    tariff: DocumentSchema
 
 
-class GetContractDocumentResponseDict(BaseModel):
-    contract: DocumentDict
+class GetContractDocumentResponseSchema(BaseModel):
+    contract: DocumentSchema
