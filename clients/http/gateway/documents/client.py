@@ -1,20 +1,7 @@
-from typing import TypedDict
 from httpx import Response
 from clients.http.client import HTTPClient
 from clients.http.gateway.client import build_gateway_http_client
-
-
-class DocumentDict(TypedDict):
-    url: str
-    document: str
-
-
-class GetTariffDocumentResponseDict(TypedDict):
-    tariff: DocumentDict
-
-
-class GetContractDocumentResponseDict(TypedDict):
-    contract: DocumentDict
+from clients.http.gateway.documents.schema import GetTariffDocumentResponseDict, GetContractDocumentResponseDict
 
 
 class DocumentsGatewayHTTPClient(HTTPClient):
@@ -42,11 +29,11 @@ class DocumentsGatewayHTTPClient(HTTPClient):
 
     def get_tariff_document(self, account_id: str) -> GetTariffDocumentResponseDict:
         response = self.get_tariff_document_api(account_id)
-        return response.json()
+        return GetTariffDocumentResponseDict.model_validate_json(response.text)
 
     def get_contract_document(self, account_id: str) -> GetContractDocumentResponseDict:
         response = self.get_contract_document_api(account_id)
-        return response.json()
+        return GetContractDocumentResponseDict.model_validate_json(response.text)
 
 
 def build_documents_gateway_http_client() -> DocumentsGatewayHTTPClient:
