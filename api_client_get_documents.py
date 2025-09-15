@@ -10,8 +10,8 @@ create_user_response = users_gateway_client.create_user()
 print(f"Create user response: {create_user_response}")
 
 open_credit_card_account_response = accounts_gateway_client.open_credit_card_account(
-    user_id=create_user_response['user']['id'])
-account_id = open_credit_card_account_response['account']['id']
+    user_id=create_user_response.user.id)
+account_id = open_credit_card_account_response.account.id
 print(f"Open credit card account response: {open_credit_card_account_response}")
 
 get_tariff_document_response = documents_gateway_client.get_tariff_document(account_id)
